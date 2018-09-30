@@ -195,12 +195,18 @@ var initPhotoSwipeFromDOM = function(gallerySelector) {
 
     //Replace the href of the thumbnails images
     for (let i = 0; i < thumbnaiImglChildren.length; i++) {
-      thumbnaiImglChildren[i].children[0].href =
+      const thumbnailImgLink = thumbnaiImglChildren[i].children[0];
+      thumbnailImgLink.href =
         window.location.pathname + `#&gid=${galleryUID}&pid=${i + 1}`;
+
+      //Toggle src with data-src
+      const thumbnailImageTag = thumbnailImgLink.firstElementChild;
+      const imageSource = thumbnailImageTag.dataset.src;
+      thumbnailImageTag.setAttribute('src', imageSource);
     }
   };
 
-  // loop through all gallery elements and bind events
+  // Loop through all gallery elements and bind events
   var galleryElements = document.querySelectorAll(gallerySelector);
 
   for (var i = 0, l = galleryElements.length; i < l; i++) {
@@ -210,7 +216,6 @@ var initPhotoSwipeFromDOM = function(gallerySelector) {
 
   // Parse URL and open gallery if it contains #&pid=3&gid=1
   var hashData = photoswipeParseHash();
-  console.log(hashData);
   if (hashData.pid && hashData.gid) {
     openPhotoSwipe(hashData.pid, galleryElements[hashData.gid - 1], true, true);
   }
