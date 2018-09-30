@@ -1,0 +1,55 @@
+.my-gallery {
+  width: 100%;
+  float: left;
+  position: relative;
+}
+.my-gallery img {
+  width: 100%;
+  height: auto;
+}
+.my-gallery figure {
+  display: block;
+  float: left;
+  margin: 0 5px 5px 0;
+  width: 150px;
+}
+.my-gallery figcaption {
+  display: none;
+}
+
+.modal {
+  position: absolute;
+  bottom: 48px;
+  display: flex;
+  left: 50%;
+  transform: translateX(-50%);
+}
+
+.modal[aria-hidden='true'] {
+  opacity: 0;
+}
+
+.img1 {
+  width: 100px;
+  height: 100px;
+  margin: 0 5px;
+}
+
+.pswp__bg,
+.pswp__ui--fit .pswp__caption {
+  background-color: white;
+}
+
+img {
+  width: 100px;
+  height: 100px;
+}
+
+.pswp__caption__center {
+  display: flex;
+  justify-content: center;
+}
+/* .pswp__button--arrow--left:before,
+.pswp__button--arrow--right:before {
+  background: url('https://farm7.staticflickr.com/6175/6176698785_7dee72237e_m.jpg');
+} */
