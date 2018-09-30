@@ -185,24 +185,32 @@ var initPhotoSwipeFromDOM = function(gallerySelector) {
 
     //Add .thumbnailImgs to .pwsp
     const thumbnailImgs = document.querySelector('.thumbnailImgs');
-    const galleryUID = options.galleryUID;
     pswpElement.appendChild(thumbnailImgs);
-
-    //Find the href of the thumbnails images
+    //Find the href of the thumbnail images
     const thumbnailImg = pswpElement.children[2];
-    thumbnailImg.style.display = 'flex';
     const thumbnaiImglChildren = thumbnailImg.children;
+    const galleryUID = options.galleryUID;
+    const closeButton = document.querySelector('.pswp__button--close');
+    //Display thumbnail images
+    thumbnailImg.style.display = 'flex';
 
-    //Replace the href of the thumbnails images
+    //Replace the href of the thumbnail images
     for (let i = 0; i < thumbnaiImglChildren.length; i++) {
       const thumbnailImgLink = thumbnaiImglChildren[i].children[0];
       thumbnailImgLink.href =
         window.location.pathname + `#&gid=${galleryUID}&pid=${i + 1}`;
 
-      //Toggle src with data-src
+      //Add src from data-src
       const thumbnailImageTag = thumbnailImgLink.firstElementChild;
       const imageSource = thumbnailImageTag.dataset.src;
       thumbnailImageTag.setAttribute('src', imageSource);
+
+      //Remove src from the thumbnail images tags
+      closeButton.addEventListener('click', e => {
+        thumbnailImg.style.display = 'none';
+        thumbnailImageTag.removeAttribute('src');
+        e.preventDefault();
+      });
     }
   };
 
@@ -223,3 +231,5 @@ var initPhotoSwipeFromDOM = function(gallerySelector) {
 
 // execute above function
 initPhotoSwipeFromDOM('.my-gallery');
+
+const pswpElement = document.querySelector('.pswp');
