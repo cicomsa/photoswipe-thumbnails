@@ -183,16 +183,20 @@ var initPhotoSwipeFromDOM = function(gallerySelector) {
     gallery = new PhotoSwipe(pswpElement, PhotoSwipeUI_Default, items, options);
     gallery.init();
 
-    const thumbnails = document.querySelector('.thumbnails');
-    pswpElement.appendChild(thumbnails);
+    //Add .thumbnailImgs to .pwsp
+    const thumbnailImgs = document.querySelector('.thumbnailImgs');
+    const galleryUID = options.galleryUID;
+    pswpElement.appendChild(thumbnailImgs);
 
-    const thumbnail = pswpElement.children[2];
-    thumbnail.style.display = 'flex';
-    const thumbnailChildren = thumbnail.children;
+    //Find the href of the thumbnails images
+    const thumbnailImg = pswpElement.children[2];
+    thumbnailImg.style.display = 'flex';
+    const thumbnaiImglChildren = thumbnailImg.children;
 
-    for (let i = 0; i < thumbnailChildren.length; i++) {
-      thumbnailChildren[i].children[0].href =
-        window.location.pathname + `#&gid=1&pid=${i + 1}`;
+    //Replace the href of the thumbnails images
+    for (let i = 0; i < thumbnaiImglChildren.length; i++) {
+      thumbnaiImglChildren[i].children[0].href =
+        window.location.pathname + `#&gid=${galleryUID}&pid=${i + 1}`;
     }
   };
 
@@ -205,7 +209,6 @@ var initPhotoSwipeFromDOM = function(gallerySelector) {
   }
 
   // Parse URL and open gallery if it contains #&pid=3&gid=1
-  const captions = document.querySelector('.modal').children;
   var hashData = photoswipeParseHash();
   console.log(hashData);
   if (hashData.pid && hashData.gid) {

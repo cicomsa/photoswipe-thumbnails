@@ -17,7 +17,7 @@
   display: none;
 }
 
-.modal {
+.thumbnailImgs {
   position: absolute;
   bottom: 48px;
   display: flex;
