@@ -183,15 +183,16 @@ var initPhotoSwipeFromDOM = function(gallerySelector) {
     gallery = new PhotoSwipe(pswpElement, PhotoSwipeUI_Default, items, options);
     gallery.init();
 
-    const captions = document.querySelector('.modal');
-    pswpElement.appendChild(captions);
+    const thumbnails = document.querySelector('.thumbnails');
+    pswpElement.appendChild(thumbnails);
 
-    const caption = pswpElement.children[2];
-    caption.style.display = 'flex';
-    const captionChildren = caption.children;
+    const thumbnail = pswpElement.children[2];
+    thumbnail.style.display = 'flex';
+    const thumbnailChildren = thumbnail.children;
 
-    for (let i = 0; i < captionChildren.length; i++) {
-      captionChildren[i].children[0].href = window.location.pathname;
+    for (let i = 0; i < thumbnailChildren.length; i++) {
+      thumbnailChildren[i].children[0].href =
+        window.location.pathname + `#&gid=1&pid=${i + 1}`;
     }
   };
 
@@ -204,7 +205,7 @@ var initPhotoSwipeFromDOM = function(gallerySelector) {
   }
 
   // Parse URL and open gallery if it contains #&pid=3&gid=1
-
+  const captions = document.querySelector('.modal').children;
   var hashData = photoswipeParseHash();
   console.log(hashData);
   if (hashData.pid && hashData.gid) {
