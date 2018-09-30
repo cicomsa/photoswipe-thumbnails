@@ -217,7 +217,4 @@ var initPhotoSwipeFromDOM = function(gallerySelector) {
 };
 
 // execute above function
-
-// initPhotoSwipeFromDOM('.modal');
-// console.log(window.location.href);
 initPhotoSwipeFromDOM('.my-gallery');
